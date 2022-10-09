@@ -20,10 +20,10 @@ after_success:
   #LOGIN TO DOCKER
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #PUSH TO DOCKER HUB
-  - docker push -t calebadegbite/complex-client
-  - docker push -t calebadegbite/complex-nginx
-  - docker push -t calebadegbite/complex-server
-  - docker push -t calebadegbite/complex-worker
+  - docker push calebadegbite/complex-client
+  - docker push calebadegbite/complex-nginx
+  - docker push calebadegbite/complex-server
+  - docker push calebadegbite/complex-worker
 
 deploy:
   provider: elasticbeanstalk

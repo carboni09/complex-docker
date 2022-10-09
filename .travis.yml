@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t calebadegbite/complex_client -f ./client/Dockerfile.dev ./client/Dockerfile.dev
+  - docker build -t calebadegbite/complex_client -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true calebadegbite/complex-client npm test
@@ -12,3 +12,11 @@ after_success:
   - docker build -t calebadegbite/complex-nginx ./nginx
   - docker build -t calebadegbite/complex-server ./server
   - docker build -t calebadegbite/complex-worker ./worker
+
+  #LOGIN TO DOCKER
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #PUSH TO DOCKER HUB
+  - docker push -t calebadegbite/complex-client
+  - docker push -t calebadegbite/complex-nginx
+  - docker push -t calebadegbite/complex-server
+  - docker push -t calebadegbite/complex-worker

@@ -24,3 +24,15 @@ after_success:
   - docker push -t calebadegbite/complex-nginx
   - docker push -t calebadegbite/complex-server
   - docker push -t calebadegbite/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "complex-docker"
+  env: "Complexdocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-767283506971"
+  bucket_path: "complex-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"

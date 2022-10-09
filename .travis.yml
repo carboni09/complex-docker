@@ -4,6 +4,8 @@ services:
   - docker
 
 before_install:
+  - echo "$DOCKER_ID"
+  - echo "$DOCKER_PASSWORD"
   - docker build -t client-test -f ./client/Dockerfile.dev ./client
 
 script:
